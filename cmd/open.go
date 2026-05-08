@@ -95,7 +95,9 @@ func fetchEventByID(cfg *config.Config, id string) (*classify.Event, error) {
 		cfg.OpenObserve.Auth,
 	)
 
-	sql := fmt.Sprintf(`SELECT * FROM "%s" WHERE _id = '%s' LIMIT 1`,
+	sql := fmt.Sprintf(`SELECT _timestamp, _id, session_id, project_name, event_name, tool_name,
+       body, severityText, error_type, success, decision
+FROM "%s" WHERE _id = '%s' LIMIT 1`,
 		cfg.OpenObserve.Stream, escapeSingleQuote(id))
 
 	now := time.Now()

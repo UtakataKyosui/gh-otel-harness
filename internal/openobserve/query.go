@@ -9,9 +9,9 @@ import (
 
 // EventTypes used as --type filter values
 const (
-	TypeToolError    = "tool_error"
-	TypeRefusal      = "refusal"
-	TypeToolAnomaly  = "tool_anomaly"
+	TypeToolError   = "tool_error"
+	TypeRefusal     = "refusal"
+	TypeToolAnomaly = "tool_anomaly"
 )
 
 var AllTypes = []string{TypeToolError, TypeRefusal, TypeToolAnomaly}
@@ -24,6 +24,8 @@ type FetchOptions struct {
 }
 
 // BuildSQL returns the SQL to fetch failure events from the configured stream.
+// OpenObserve uses DataFusion SQL — OTel attributes are stored as top-level columns,
+// not nested JSON. json_extract() is not available.
 func BuildSQL(stream string, opts FetchOptions) string {
 	if len(opts.Types) == 0 {
 		opts.Types = AllTypes
@@ -37,11 +39,12 @@ func BuildSQL(stream string, opts FetchOptions) string {
 	for _, t := range opts.Types {
 		switch t {
 		case TypeToolError:
+			// success は OTel 属性としてフラット化されたカラム
 			clauses = append(clauses,
-				`(event_name = 'claude_code.tool_result' AND json_extract(body, '$.success') = false)`)
+				`(event_name = 'claude_code.tool_result' AND success = 'false')`)
 		case TypeRefusal:
 			clauses = append(clauses,
-				`(event_name = 'claude_code.tool_decision' AND json_extract(body, '$.decision') = 'reject')`,
+				`(event_name = 'claude_code.tool_decision' AND decision = 'reject')`,
 				`severityText = 'ERROR'`)
 		case TypeToolAnomaly:
 			clauses = append(clauses,
@@ -55,10 +58,7 @@ func BuildSQL(stream string, opts FetchOptions) string {
 	}
 
 	return fmt.Sprintf(`SELECT _timestamp, _id, session_id, project_name, event_name, tool_name,
-       body, severityText,
-       CAST(json_extract(body, '$.error_type') AS VARCHAR) AS error_type,
-       CAST(json_extract(body, '$.success') AS VARCHAR) AS success,
-       CAST(json_extract(body, '$.decision') AS VARCHAR) AS decision
+       body, severityText, error_type, success, decision
 FROM "%s"
 WHERE service_name = 'claude_code'
   AND %s
