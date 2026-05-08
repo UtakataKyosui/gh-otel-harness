@@ -22,7 +22,6 @@ type Event struct {
 	EventName   string
 	ToolName    string
 	Body        string
-	SeverityText string
 	ErrorType   string
 	Success     string
 	Decision    string
@@ -62,7 +61,6 @@ func FromHit(hit map[string]any) *Event {
 		EventName:   strVal(hit, "event_name"),
 		ToolName:    strVal(hit, "tool_name"),
 		Body:        strVal(hit, "body"),
-		SeverityText: strVal(hit, "severityText"),
 		ErrorType:   strVal(hit, "error_type"),
 		Success:     strVal(hit, "success"),
 		Decision:    strVal(hit, "decision"),
@@ -94,9 +92,6 @@ func categorize(e *Event) Category {
 		}
 	case "claude_code.api_error", "claude_code.api_retries_exhausted", "claude_code.internal_error":
 		return CategoryToolAnomaly
-	}
-	if e.SeverityText == "ERROR" {
-		return CategoryRefusal
 	}
 	return CategoryToolAnomaly
 }

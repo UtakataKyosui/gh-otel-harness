@@ -44,8 +44,7 @@ func BuildSQL(stream string, opts FetchOptions) string {
 				`(event_name = 'claude_code.tool_result' AND success = 'false')`)
 		case TypeRefusal:
 			clauses = append(clauses,
-				`(event_name = 'claude_code.tool_decision' AND decision = 'reject')`,
-				`severityText = 'ERROR'`)
+				`(event_name = 'claude_code.tool_decision' AND decision = 'reject')`)
 		case TypeToolAnomaly:
 			clauses = append(clauses,
 				`event_name IN ('claude_code.api_error', 'claude_code.api_retries_exhausted', 'claude_code.internal_error')`)
@@ -57,8 +56,8 @@ func BuildSQL(stream string, opts FetchOptions) string {
 		where = fmt.Sprintf("project_name = '%s' AND %s", escapeSQLString(opts.ProjectFilter), where)
 	}
 
-	return fmt.Sprintf(`SELECT _timestamp, _id, session_id, project_name, event_name, tool_name,
-       body, severityText, error_type, success, decision
+	return fmt.Sprintf(`SELECT _timestamp, session_id, project_name, event_name, tool_name,
+       body, error_type, success, decision
 FROM "%s"
 WHERE service_name = 'claude_code'
   AND %s
