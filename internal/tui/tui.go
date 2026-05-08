@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"

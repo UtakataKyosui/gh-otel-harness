@@ -6,14 +6,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/config"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/config"
 	"github.com/spf13/cobra"
 )
 
 func newConfigureCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "configure",
-		Short: "対話的に ~/.config/gh-c2-harness/config.toml を初期化する",
+		Short: "対話的に ~/.config/gh-otel-harness/config.toml を初期化する",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg, err := config.Load()
 			if err != nil {

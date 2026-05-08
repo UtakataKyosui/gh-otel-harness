@@ -33,7 +33,7 @@ type QueryConfig struct {
 
 func DefaultPath() string {
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".config", "gh-c2-harness", "config.toml")
+	return filepath.Join(home, ".config", "gh-otel-harness", "config.toml")
 }
 
 func Load() (*Config, error) {
@@ -92,10 +92,10 @@ func SaveTo(cfg *Config, path string) error {
 
 func (c *Config) Validate() error {
 	if c.OpenObserve.Auth == "" {
-		return fmt.Errorf("openobserve.auth is required (run: gh c2-harness configure)")
+		return fmt.Errorf("openobserve.auth is required (run: gh otel-harness configure)")
 	}
 	if c.Harness.Repo == "" {
-		return fmt.Errorf("harness.repo is required (run: gh c2-harness configure)")
+		return fmt.Errorf("harness.repo is required (run: gh otel-harness configure)")
 	}
 	return nil
 }

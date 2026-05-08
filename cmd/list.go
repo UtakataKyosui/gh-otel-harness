@@ -8,10 +8,10 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/config"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/openobserve"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/config"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/openobserve"
 	"github.com/spf13/cobra"
 )
 

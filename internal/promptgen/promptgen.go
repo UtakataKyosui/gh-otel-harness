@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/issue"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/issue"
 )
 
 // Generate produces a Markdown prompt that Claude Code can consume to:
@@ -55,7 +55,7 @@ func Generate(e *classify.Event, harnessRepo string, labels []string) string {
 
 	fmt.Fprintf(&b, "## 制約\n\n")
 	fmt.Fprintf(&b, "- fingerprint チェックを省略しない\n")
-	fmt.Fprintf(&b, "- Issue body の末尾の HTML コメント (`<!-- gh-c2-harness:fingerprint:... -->`) を必ず含める\n")
+	fmt.Fprintf(&b, "- Issue body の末尾の HTML コメント (`<!-- gh-otel-harness:fingerprint:... -->`) を必ず含める\n")
 	fmt.Fprintf(&b, "- `rtk gh` を使い、`gh` を直接呼ばない\n")
 
 	return b.String()

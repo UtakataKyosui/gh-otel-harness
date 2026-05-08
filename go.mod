@@ -1,4 +1,4 @@
-module github.com/UtakataKyosui/gh-c2-harness
+module github.com/UtakataKyosui/gh-otel-harness
 
 go 1.22
 

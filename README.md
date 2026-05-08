@@ -1,20 +1,20 @@
-# gh-c2-harness
+# gh-otel-harness
 
 Claude Code の失敗履歴を OpenObserve から取得し、ハーネスリポジトリへ GitHub Issue として起票する `gh` 拡張機能。
 
 ## インストール
 
 ```bash
-gh extension install UtakataKyosui/gh-c2-harness
+gh extension install UtakataKyosui/gh-otel-harness
 ```
 
 ## セットアップ
 
 ```bash
-gh c2-harness configure
+gh otel-harness configure
 ```
 
-`~/.config/gh-c2-harness/config.toml` を対話式で作成します。
+`~/.config/gh-otel-harness/config.toml` を対話式で作成します。
 
 ### 環境変数による上書き
 
@@ -28,10 +28,10 @@ gh c2-harness configure
 ### TUI モード（既定）
 
 ```bash
-gh c2-harness
-gh c2-harness --since 7d
-gh c2-harness --type tool_error,refusal
-gh c2-harness --project my-project
+gh otel-harness
+gh otel-harness --since 7d
+gh otel-harness --type tool_error,refusal
+gh otel-harness --project my-project
 ```
 
 space で複数選択、enter で一括起票。
@@ -39,25 +39,25 @@ space で複数選択、enter で一括起票。
 ### 一覧表示
 
 ```bash
-gh c2-harness list
-gh c2-harness list --since 7d -j   # JSON 出力
+gh otel-harness list
+gh otel-harness list --since 7d -j   # JSON 出力
 ```
 
 ### 単発起票
 
 ```bash
-gh c2-harness open <event-id>
-gh c2-harness open <event-id> --dry-run   # title/body を確認
+gh otel-harness open <event-id>
+gh otel-harness open <event-id> --dry-run   # title/body を確認
 ```
 
 ### Claude Code に指示を渡す
 
 ```bash
 # プロンプトを生成して Claude Code に渡す
-gh c2-harness prompt <event-id> | claude --print
+gh otel-harness prompt <event-id> | claude --print
 
 # ファイルに保存してから渡す
-gh c2-harness prompt <event-id> > /tmp/harness.md
+gh otel-harness prompt <event-id> > /tmp/harness.md
 ```
 
 `prompt` サブコマンドは Claude Code が読み取れる Markdown を stdout に出力します。
@@ -76,14 +76,14 @@ Claude Code はそのプロンプトに従って fingerprint 重複チェック 
 Issue body の HTML コメントに fingerprint を埋め込みます:
 
 ```
-<!-- gh-c2-harness:fingerprint:abc123def456 -->
+<!-- gh-otel-harness:fingerprint:abc123def456 -->
 ```
 
 起票前に `gh search issues` でこの fingerprint を検索し、既存 Issue があればスキップします。
 
 ## 設定ファイル
 
-`~/.config/gh-c2-harness/config.toml`:
+`~/.config/gh-otel-harness/config.toml`:
 
 ```toml
 [openobserve]

@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/config"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/promptgen"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/config"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/promptgen"
 	"github.com/spf13/cobra"
 )
 
@@ -18,8 +18,8 @@ func newPromptCmd() *cobra.Command {
 Claude Code に渡すことで、ハーネステスト追加と Issue 起票を自動化できます。
 
 例:
-  gh c2-harness prompt abc123def456 | claude --print
-  gh c2-harness prompt abc123def456 > /tmp/harness-prompt.md`,
+  gh otel-harness prompt abc123def456 | claude --print
+  gh otel-harness prompt abc123def456 > /tmp/harness-prompt.md`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			eventID := args[0]

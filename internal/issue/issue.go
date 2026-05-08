@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
 	"github.com/cli/go-gh/v2/pkg/api"
 )
 
@@ -45,8 +45,8 @@ func BuildBody(e *classify.Event, fp string) string {
 	fmt.Fprintf(&b, "\n## Harness TODO\n")
 	fmt.Fprintf(&b, "- [ ] このケースを再現するテストを追加\n")
 	fmt.Fprintf(&b, "- [ ] 再発防止のルール / フックを検討\n")
-	fmt.Fprintf(&b, "\n<!-- gh-c2-harness:fingerprint:%s -->\n", fp)
-	fmt.Fprintf(&b, "<!-- gh-c2-harness:event_id:%s -->\n", e.ID)
+	fmt.Fprintf(&b, "\n<!-- gh-otel-harness:fingerprint:%s -->\n", fp)
+	fmt.Fprintf(&b, "<!-- gh-otel-harness:event_id:%s -->\n", e.ID)
 	return b.String()
 }
 

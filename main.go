@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/UtakataKyosui/gh-c2-harness/cmd"
+	"github.com/UtakataKyosui/gh-otel-harness/cmd"
 )
 
 func main() {

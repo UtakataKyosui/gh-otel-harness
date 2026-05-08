@@ -6,13 +6,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/config"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/dedupe"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/issue"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/openobserve"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/tui"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/config"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/dedupe"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/issue"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/openobserve"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/tui"
 	"github.com/cli/go-gh/v2/pkg/api"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
@@ -28,7 +28,7 @@ func NewRootCmd() *cobra.Command {
 	)
 
 	root := &cobra.Command{
-		Use:   "c2-harness",
+		Use:   "otel-harness",
 		Short: "Claude Code 失敗履歴を OpenObserve から取得してハーネスリポジトリに Issue を起票する",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg, err := config.Load()

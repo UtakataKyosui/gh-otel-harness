@@ -7,12 +7,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/UtakataKyosui/gh-c2-harness/internal/classify"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/config"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/dedupe"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/fingerprint"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/issue"
-	"github.com/UtakataKyosui/gh-c2-harness/internal/openobserve"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/classify"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/config"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/dedupe"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/fingerprint"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/issue"
+	"github.com/UtakataKyosui/gh-otel-harness/internal/openobserve"
 	"github.com/cli/go-gh/v2/pkg/api"
 	"github.com/spf13/cobra"
 )
