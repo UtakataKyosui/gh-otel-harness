@@ -59,8 +59,8 @@ func newConfigureCmd() *cobra.Command {
 				cfg.Query.DefaultSince = since
 			}
 
-			// フラグが全部揃っていれば対話不要
-			allProvided := endpoint != "" && auth != "" && harnessRepo != ""
+			// auth と harness-repo があれば非対話で完結できる（endpoint 等はデフォルト値あり）
+			allProvided := auth != "" && harnessRepo != ""
 			if !allProvided {
 				// TTY チェック：非対話環境では省略してエラーにしない
 				if !term.IsTerminal(int(os.Stdin.Fd())) {
